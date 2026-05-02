@@ -1,0 +1,14 @@
+<div class="grid-container">
+  <div *ngIf="loading" class="loader">🍳 Cooking up some recipes...</div>
+  
+  <div *ngIf="!loading && recipes.length === 0" class="empty-state">
+    <p>🔍 Start searching to discover recipes!</p>
+  </div>
+
+  <div class="recipe-grid" *ngIf="!loading && recipes.length > 0">
+    <app-recipe-card 
+      *ngFor="let recipe of recipes; trackBy: trackById"
+      [recipe]="recipe"
+    ></app-recipe-card>
+  </div>
+</div>

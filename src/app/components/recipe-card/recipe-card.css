@@ -1,0 +1,167 @@
+/* recipe-card.css */
+
+.recipe-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 12px rgba(40, 54, 24, 0.08),
+    0 1px 3px rgba(40, 54, 24, 0.05);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease;
+  border: 1px solid rgba(163, 177, 138, 0.2);
+  position: relative;
+}
+
+.recipe-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #588157 0%, #BC6C25 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.recipe-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 12px 28px rgba(88, 129, 87, 0.18),
+    0 4px 12px rgba(188, 108, 37, 0.08);
+  border-color: rgba(88, 129, 87, 0.3);
+}
+
+.recipe-card:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   🖼️ IMAGE WRAPPER
+   ============================================ */
+.image-wrapper {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #F4F1DE; /* placeholder كريمي */
+}
+
+.image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(40, 54, 24, 0.15) 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.recipe-card:hover .image-wrapper::after {
+  opacity: 1;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.recipe-card:hover .recipe-image {
+  transform: scale(1.06);
+}
+
+/* ============================================
+   ❤️ FAVORITE BUTTON
+   ============================================ */
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(254, 250, 224, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(163, 177, 138, 0.4);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(40, 54, 24, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  color: #588157;
+}
+
+.favorite-btn:hover {
+  background: #FFFFFF;
+  transform: scale(1.1);
+  border-color: #BC6C25;
+  color: #BC6C25;
+  box-shadow: 0 4px 14px rgba(188, 108, 37, 0.3);
+}
+
+.favorite-btn.active,
+.favorite-btn.favorited {
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 14px rgba(188, 108, 37, 0.4);
+}
+
+/* ============================================
+   📝 RECIPE INFO
+   ============================================ */
+.recipe-info {
+  padding: 18px 18px 20px;
+  background: #FFFFFF;
+}
+
+.recipe-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #283618;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+  /* قص العناوين الطويلة بشكل لطيف */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.recipe-card:hover .recipe-info h3 {
+  color: #588157;
+}
+
+.prep-time {
+  color: #606C38;
+  font-size: 0.88rem;
+  margin: 0;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(163, 177, 138, 0.15);
+  border-radius: 50px;
+  letter-spacing: 0.3px;
+}
+
+.prep-time::before {
+  content: '⏱';
+  font-size: 0.9rem;
+}

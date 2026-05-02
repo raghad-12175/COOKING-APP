@@ -1,0 +1,505 @@
+/* login.css */
+
+/* ============================================
+   📦 AUTH CONTAINER
+   ============================================ */
+.auth-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #FEFAE0 0%, #F4F1DE 50%, #E9E5C8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background elements */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(
+    circle, 
+    rgba(88, 129, 87, 0.12) 0%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: floatBg 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.auth-container::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle, 
+    rgba(188, 108, 37, 0.1) 0%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: floatBg 14s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes floatBg {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* ============================================
+   🃏 AUTH CARD
+   ============================================ */
+.auth-card {
+  background: #FFFFFF;
+  padding: 50px 42px;
+  border-radius: 24px;
+  box-shadow: 
+    0 20px 50px rgba(40, 54, 24, 0.12),
+    0 4px 12px rgba(88, 129, 87, 0.08);
+  max-width: 460px;
+  width: 100%;
+  border: 1px solid rgba(163, 177, 138, 0.3);
+  position: relative;
+  z-index: 2;
+  animation: cardEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Decorative top gradient */
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #588157 0%, #BC6C25 100%);
+  border-radius: 24px 24px 0 0;
+}
+
+/* ============================================
+   📌 AUTH HEADER
+   ============================================ */
+.auth-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.auth-header h1 {
+  color: #283618;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 2.3rem;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #3A5A40 0%, #588157 50%, #BC6C25 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  padding: 0 6px 4px;
+  line-height: 1.3;
+}
+
+.auth-header p {
+  color: #606C38;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================
+   📝 AUTH FORM
+   ============================================ */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.form-group label {
+  color: #283618;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ============================================
+   ⌨️ INPUTS
+   ============================================ */
+.form-group input {
+  padding: 14px 18px;
+  border: 2px solid rgba(163, 177, 138, 0.4);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  background: #FEFAE0;
+  color: #283618;
+  letter-spacing: 0.3px;
+}
+
+.form-group input::placeholder {
+  color: #A3B18A;
+  font-style: italic;
+}
+
+.form-group input:hover {
+  border-color: rgba(88, 129, 87, 0.5);
+  background: #FFFFFF;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #588157;
+  background: #FFFFFF;
+  box-shadow: 
+    0 0 0 4px rgba(88, 129, 87, 0.12),
+    0 2px 8px rgba(88, 129, 87, 0.08);
+}
+
+/* Input مع قيمة (اختياري) */
+.form-group input:not(:placeholder-shown) {
+  background: #FFFFFF;
+  border-color: rgba(88, 129, 87, 0.3);
+}
+
+/* Error state */
+.form-group input.error {
+  border-color: #BC4749;
+  background: #FFF5F5;
+}
+
+.form-group input.error:focus {
+  box-shadow: 0 0 0 4px rgba(188, 71, 73, 0.12);
+}
+
+/* ============================================
+   ⚠️ ERROR MESSAGES
+   ============================================ */
+.error-text {
+  color: #BC4749;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.2px;
+}
+
+.error-text::before {
+  content: '⚠';
+  font-size: 0.95rem;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #FFF5F5 0%, #FFEBEB 100%);
+  color: #8B2C2D;
+  padding: 13px 18px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 0.92rem;
+  font-weight: 500;
+  border-left: 4px solid #BC4749;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.2px;
+}
+
+.error-message::before {
+  content: '⚠️';
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   ✅ SUCCESS MESSAGE (لو احتجتيها)
+   ============================================ */
+.success-message {
+  background: linear-gradient(135deg, #F0F7E6 0%, #E1EFD1 100%);
+  color: #3A5A40;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  border-left: 4px solid #588157;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.success-message::before {
+  content: '✓';
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ============================================
+   🔘 SUBMIT BUTTON
+   ============================================ */
+.submit-btn {
+  background: linear-gradient(135deg, #588157 0%, #3A5A40 100%);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.6px;
+  font-family: 'Georgia', serif;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 14px rgba(58, 90, 64, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Shine effect on hover */
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(58, 90, 64, 0.4),
+    0 4px 12px rgba(188, 108, 37, 0.15);
+  background: linear-gradient(135deg, #3A5A40 0%, #283618 100%);
+}
+
+.submit-btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #A3B18A 0%, #606C38 100%);
+}
+
+/* Loading state (لو محتاجة) */
+.submit-btn.loading {
+  color: transparent;
+  pointer-events: none;
+}
+
+.submit-btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: btnSpin 0.8s linear infinite;
+}
+
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   🔄 AUTH SWITCH (Login ↔ Signup)
+   ============================================ */
+.auth-switch {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(163, 177, 138, 0.3);
+  color: #606C38;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+}
+
+.auth-switch a {
+  color: #BC6C25;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 6px;
+  position: relative;
+  transition: color 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.auth-switch a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #BC6C25, #588157);
+  transition: width 0.3s ease;
+}
+
+.auth-switch a:hover {
+  color: #588157;
+}
+
+.auth-switch a:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   🔗 FORGOT PASSWORD LINK (لو موجود)
+   ============================================ */
+.forgot-password {
+  text-align: right;
+  margin-top: -10px;
+}
+
+.forgot-password a {
+  color: #606C38;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  letter-spacing: 0.2px;
+}
+
+.forgot-password a:hover {
+  color: #BC6C25;
+  text-decoration: underline;
+}
+
+/* ============================================
+   🌐 SOCIAL LOGIN (لو احتجتيها)
+   ============================================ */
+.social-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0;
+  color: #A3B18A;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.social-divider::before,
+.social-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(163, 177, 138, 0.4);
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-btn {
+  flex: 1;
+  padding: 12px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(163, 177, 138, 0.4);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #283618;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.social-btn:hover {
+  border-color: #588157;
+  background: #FEFAE0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(88, 129, 87, 0.15);
+}
+
+/* ============================================
+   📱 RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 30px 14px;
+  }
+
+  .auth-card {
+    padding: 36px 24px;
+    border-radius: 20px;
+  }
+
+  .auth-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .auth-header p {
+    font-size: 0.92rem;
+  }
+
+  .form-group input {
+    padding: 13px 16px;
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  .social-buttons {
+    flex-direction: column;
+  }
+}

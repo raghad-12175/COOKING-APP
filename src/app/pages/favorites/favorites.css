@@ -1,0 +1,267 @@
+/* favorites.css */
+
+/* ============================================
+   🎨 PAGE HEADER (Hero)
+   ============================================ */
+.page-header {
+  background: linear-gradient(135deg, #3A5A40 0%, #588157 50%, #BC6C25 100%);
+  color: white;
+  padding: 80px 20px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative circles */
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(
+    circle, 
+    rgba(254, 250, 224, 0.18) 0%, 
+    rgba(254, 250, 224, 0) 70%
+  );
+  border-radius: 50%;
+  animation: floatHeader 8s ease-in-out infinite;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle, 
+    rgba(221, 161, 94, 0.2) 0%, 
+    rgba(221, 161, 94, 0) 70%
+  );
+  border-radius: 50%;
+  animation: floatHeader 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatHeader {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -20px) scale(1.05); }
+}
+
+/* Make sure content is above decorations */
+.page-header > * {
+  position: relative;
+  z-index: 2;
+}
+
+.page-header h1 {
+  font-size: 2.8rem;
+  margin: 0 0 14px 0;
+  font-family: 'Georgia', serif;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 4px 12px rgba(40, 54, 24, 0.25);
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Optional: heart icon قبل العنوان */
+.page-header h1::before {
+  content: '';
+  font-size: 2.4rem;
+  filter: drop-shadow(0 2px 6px rgba(40, 54, 24, 0.3));
+  animation: heartBeat 1.8s ease-in-out infinite;
+}
+
+
+.page-header p {
+  font-size: 1.1rem;
+  margin: 0 auto;
+  max-width: 600px;
+  opacity: 0.95;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  color: rgba(254, 250, 224, 0.95);
+}
+
+/* Decorative underline (اختياري) */
+.page-header h1 + p::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #DDA15E, #FEFAE0);
+  border-radius: 2px;
+  margin: 0 auto 18px;
+}
+
+
+.empty-state {
+  text-align: center;
+  padding: 80px 30px;
+  color: #606C38;
+  max-width: 600px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FEFAE0 100%);
+  border-radius: 24px;
+  border: 2px dashed rgba(163, 177, 138, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 4px 20px rgba(40, 54, 24, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative gradient blob */
+.empty-state::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(
+    circle, 
+    rgba(188, 108, 37, 0.1) 0%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.empty-state::after {
+  content: '';
+  font-size: 4.5rem;
+  display: block;
+  opacity: 0.85;
+  filter: drop-shadow(0 6px 12px rgba(188, 108, 37, 0.2));
+  animation: floatEmpty 3s ease-in-out infinite;
+  margin-bottom: 8px;
+  order: -1;
+}
+
+@keyframes floatEmpty {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.empty-state h2 {
+  margin: 0;
+  color: #283618;
+  font-family: 'Georgia', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  position: relative;
+}
+
+.empty-state h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #588157, #BC6C25);
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+.empty-state p {
+  color: #606C38;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 420px;
+  letter-spacing: 0.2px;
+}
+
+/* CTA button داخل empty state */
+.empty-state button,
+.empty-state .btn,
+.empty-state a.btn {
+  margin-top: 16px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #588157 0%, #3A5A40 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(88, 129, 87, 0.3);
+  font-family: inherit;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.empty-state button:hover,
+.empty-state .btn:hover,
+.empty-state a.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(88, 129, 87, 0.45);
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+}
+
+/* ============================================
+   📱 RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 60px 18px 50px;
+  }
+
+  .page-header h1 {
+    font-size: 2.2rem;
+    gap: 10px;
+  }
+
+  .page-header h1::before {
+    font-size: 2rem;
+  }
+
+  .page-header p {
+    font-size: 1rem;
+  }
+
+  .empty-state {
+    padding: 60px 24px;
+    margin: 30px 16px;
+  }
+
+  .empty-state::after {
+    font-size: 3.5rem;
+  }
+
+  .empty-state h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 50px 14px 40px;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .empty-state {
+    padding: 50px 20px;
+  }
+
+  .empty-state::after {
+    font-size: 3rem;
+  }
+}

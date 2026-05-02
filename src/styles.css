@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* 🍅 Primary (Tomato / Warm Red) */
+  --color-primary: #c0392b;
+  --color-primary-dark: #922b21;
+  --color-primary-light: #e74c3c;
+  --color-primary-soft: #f5b7b1;
+
+  /* 🧄 Secondary (Cream / Beige) */
+  --color-secondary: #fdf2e9;
+  --color-secondary-dark: #f5cba7;
+
+  /* 🥑 Accent (Olive / Green touch) */
+  --color-accent: #6b8e23;
+
+  /* 🍞 Backgrounds */
+  --color-bg: #fffaf5;
+  --color-bg-card: #ffffff;
+  --color-bg-overlay: rgba(192, 57, 43, 0.4);
+
+  /* 🍫 Text */
+  --color-text: #3e2723;
+  --color-text-light: #6d4c41;
+  --color-text-muted: #a1887f;
+
+  /* 🍪 Borders & Shadows */
+  --color-border: #f0e0d6;
+  --shadow-sm: 0 4px 12px rgba(192, 57, 43, 0.1);
+  --shadow-md: 0 12px 24px rgba(192, 57, 43, 0.18);
+  --shadow-lg: 0 10px 30px rgba(192, 57, 43, 0.25);
+
+  /* 🍳 Gradients */
+  --gradient-hero: linear-gradient(135deg, #f5b7b1 0%, #e74c3c 50%, #922b21 100%);
+  --gradient-soft: linear-gradient(135deg, #fff3e0 0%, #f5cba7 100%);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 50px;
+  --radius-full: 50%;
+}
+
+* { 
+  box-sizing: border-box; 
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}

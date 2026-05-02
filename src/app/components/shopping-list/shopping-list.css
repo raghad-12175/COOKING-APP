@@ -1,0 +1,452 @@
+/* shopping-list.css */
+
+/* ============================================
+   🛒 CART TOGGLE BUTTON (Floating)
+   ============================================ */
+.cart-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #588157 0%, #3A5A40 100%);
+  color: white;
+  border: none;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 
+    0 6px 20px rgba(58, 90, 64, 0.35),
+    0 2px 6px rgba(40, 54, 24, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(254, 250, 224, 0.3);
+}
+
+.cart-toggle:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  box-shadow: 
+    0 10px 28px rgba(188, 108, 37, 0.45),
+    0 4px 10px rgba(40, 54, 24, 0.2);
+}
+
+.cart-toggle:active {
+  transform: translateY(-1px) scale(1);
+}
+
+/* Pulse animation عند إضافة item جديد (اختياري - أضيفي class="pulse") */
+.cart-toggle.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #BC6C25;
+  animation: cartPulse 1s ease-out;
+}
+
+@keyframes cartPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   🔢 BADGE (Item Counter)
+   ============================================ */
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: linear-gradient(135deg, #DDA15E 0%, #BC6C25 100%);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 2px 6px rgba(188, 108, 37, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 2px solid #FEFAE0;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================
+   📋 DRAWER
+   ============================================ */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 400px;
+  max-width: 90vw;
+  height: 100vh;
+  background: #FEFAE0;
+  box-shadow: -8px 0 32px rgba(40, 54, 24, 0.18);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(163, 177, 138, 0.3);
+}
+
+.drawer.open { 
+  right: 0; 
+}
+
+/* ============================================
+   📌 DRAWER HEADER
+   ============================================ */
+.drawer-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid rgba(163, 177, 138, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F1DE 100%);
+  position: relative;
+}
+
+.drawer-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #588157, #BC6C25);
+  border-radius: 2px;
+}
+
+.drawer-header h2,
+.drawer-header h3 {
+  margin: 0;
+  color: #283618;
+  font-family: 'Georgia', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-header h2::before,
+.drawer-header h3::before {
+  content: '🛒';
+  font-size: 1.3rem;
+}
+
+/* ============================================
+   ❌ CLOSE BUTTON
+   ============================================ */
+.close-btn {
+  background: rgba(163, 177, 138, 0.15);
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A5A40;
+  transition: all 0.3s ease;
+  font-weight: 700;
+}
+
+.close-btn:hover {
+  background: #BC6C25;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* ============================================
+   📦 DRAWER CONTENT
+   ============================================ */
+.drawer-content {
+  padding: 22px 24px;
+  overflow-y: auto;
+  flex: 1;
+  background: #FEFAE0;
+}
+
+/* Custom scrollbar */
+.drawer-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.drawer-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drawer-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #588157 0%, #3A5A40 100%);
+  border-radius: 10px;
+}
+
+/* ============================================
+   📝 ITEMS LIST
+   ============================================ */
+.items { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0;
+}
+
+.items li {
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid rgba(163, 177, 138, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(40, 54, 24, 0.04);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.items li:hover {
+  border-color: #588157;
+  box-shadow: 0 4px 12px rgba(88, 129, 87, 0.12);
+  transform: translateX(-2px);
+}
+
+.items li::before {
+  content: '🌿';
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+/* النص الخاص بالـ item */
+.items li > span,
+.item-name {
+  flex: 1;
+  color: #283618;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  word-break: break-word;
+}
+
+/* الكمية (لو موجودة) */
+.item-quantity {
+  color: #606C38;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  background: rgba(163, 177, 138, 0.18);
+  border-radius: 50px;
+}
+
+/* ============================================
+   🗑️ REMOVE BUTTON
+   ============================================ */
+.remove-btn {
+  background: rgba(188, 108, 37, 0.1);
+  color: #BC6C25;
+  border: 1.5px solid rgba(188, 108, 37, 0.25);
+  padding: 6px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.remove-btn:hover {
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  color: white;
+  border-color: transparent;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(188, 108, 37, 0.35);
+}
+
+/* ============================================
+   🧹 CLEAR ALL BUTTON
+   ============================================ */
+.clear-btn { 
+  width: 100%; 
+  padding: 14px 20px; 
+  margin-top: 24px;
+  background: transparent;
+  color: #BC6C25;
+  border: 2px solid #BC6C25;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.clear-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.clear-btn:hover {
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(188, 108, 37, 0.4);
+  transform: translateY(-2px);
+}
+
+.clear-btn:hover::before {
+  left: 0;
+}
+
+/* ============================================
+   🌫️ OVERLAY
+   ============================================ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(40, 54, 24, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================
+   📭 EMPTY STATE
+   ============================================ */
+.empty { 
+  text-align: center; 
+  color: #606C38; 
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.empty::before {
+  content: '🛒';
+  font-size: 3.5rem;
+  opacity: 0.6;
+  filter: grayscale(0.2);
+  animation: floatEmpty 3s ease-in-out infinite;
+}
+
+@keyframes floatEmpty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.empty p,
+.empty span {
+  margin: 0;
+  color: #606C38;
+  line-height: 1.5;
+  max-width: 260px;
+}
+
+.empty strong {
+  color: #283618;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+}
+
+/* ============================================
+   📱 RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .cart-toggle {
+    width: 56px;
+    height: 56px;
+    font-size: 1.3rem;
+    top: 18px;
+    right: 18px;
+  }
+
+  .badge {
+    width: 22px;
+    height: 22px;
+    font-size: 0.72rem;
+  }
+
+  .drawer {
+    width: 100%;
+    max-width: 100vw;
+    right: -100vw;
+  }
+
+  .drawer-header {
+    padding: 18px 20px;
+  }
+
+  .drawer-header h2,
+  .drawer-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .drawer-content {
+    padding: 18px 20px;
+  }
+
+  .items li {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .remove-btn {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+}
